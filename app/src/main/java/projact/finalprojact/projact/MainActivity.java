@@ -14,8 +14,9 @@ public class MainActivity extends ActionBarActivity {
     int progressStatus = 0;
     Handler handler = new Handler();
     TextView textView2;
-
+//ziv
     @Override
+    //ziv
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splach);
