@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bb"
+    android:orientation="horizontal">
+
+    <ProgressBar android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bb"
+        android:layout_marginTop="113dp"
+       android:layout_marginLeft="165dp"
+
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true">
+    </ProgressBar>
+
+
+
+    <TextView
+        android:id="@+id/textLowding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Loading"
+        android:layout_alignTop="@+id/progressBar1"
+        android:layout_toEndOf="@+id/progressBar1" />
+    <TextView
+        android:id="@+id/textLowding2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading"
+        android:layout_above="@+id/textLowding"
+        android:layout_toStartOf="@+id/textLowding" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/kid"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created By Ziv And Maor"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
