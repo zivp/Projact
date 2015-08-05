@@ -1,14 +1,14 @@
 package projact.finalprojact.projact;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     ProgressBar progressBar;
     int progressStatus = 0;
