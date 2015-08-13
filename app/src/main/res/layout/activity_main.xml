@@ -5,68 +5,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:background="#ffd3ff7e">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="login"
-        android:textSize="30sp"
-        android:id="@+id/textView"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="user name"
-        android:textSize="30sp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="password"
-        android:textSize="30sp"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/editText"
-        android:layout_alignEnd="@+id/textView2" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/editText"
-        android:layout_below="@+id/textView2"
-        android:background="#ffffffff"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/editText2"
-        android:background="#ffffffff"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SIGN UP"
-        android:id="@+id/sig_up_btn"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="132dp"
-        android:textSize="20sp"
-        android:layout_alignStart="@+id/editText2"
-        android:onClick="TosignscreenOnClick" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GO >"
-        android:textSize="20sp"
-        android:id="@+id/go_btn"
-        android:layout_alignBottom="@+id/sig_up_btn"
-        android:layout_alignEnd="@+id/editText2" />
+        android:id="@+id/fragment_placeholder"
+        android:layout_alignParentEnd="true"></LinearLayout>
 
 </RelativeLayout>
