@@ -45,7 +45,7 @@ public class myMainScreen extends Activity {
 
 
 
-    //function are lanche you to location screen from menu
+    //*function are lanche you to location screen from menu*//
     public void tolocation(View view)
     {
         Intent intent=new Intent(this,MapsActivity.class);
