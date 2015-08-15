@@ -71,6 +71,7 @@
         android:id="@+id/go_btn"
         android:layout_alignBottom="@+id/sig_up_btn"
         android:layout_alignEnd="@+id/editText2"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick" />
 
 </LinearLayout>

@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
             public void run() {
                 while (progressStatus < 100)
                 {
-                    progressStatus += 1;
+                    progressStatus += 4;
                     handler.post(new Runnable()
                     {
                         public void run()
