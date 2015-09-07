@@ -24,6 +24,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -49,8 +50,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap map) {
-        LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng israel = new LatLng(31, 35);
+        map.addMarker(new MarkerOptions().position(israel).title("Marker in israel"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(israel));
     }
 }
