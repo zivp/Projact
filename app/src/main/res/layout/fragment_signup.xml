@@ -119,6 +119,7 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/save_signup_btn"
-        android:onClick="onClick" />
+        android:onClick="onClick"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

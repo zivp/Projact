@@ -27,7 +27,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:id="@+id/editText"
+        android:id="@+id/ChackUserName"
         android:layout_below="@+id/textView2"
         android:background="#ffffffff"
         android:layout_alignStart="@+id/editText2"
@@ -46,7 +46,7 @@
     <EditText
         android:layout_width="405dp"
         android:layout_height="30dp"
-        android:id="@+id/editText2"
+        android:id="@+id/ChackPassword"
         android:background="#ffffffff"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true" />

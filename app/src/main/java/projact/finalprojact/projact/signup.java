@@ -42,6 +42,7 @@ public class signup extends Fragment  {
                              Bundle savedInstanceState) {
         View myView=inflater.inflate(R.layout.fragment_signup, container, false);
 
+      //casting EditText
         LastName=(EditText)myView.findViewById(R.id.last_name_signup);
         FirstName=(EditText)myView.findViewById(R.id.first_name_signup);
         Address=(EditText)myView.findViewById(R.id.address_signup);
@@ -51,11 +52,11 @@ public class signup extends Fragment  {
         Password=(EditText)myView.findViewById(R.id.password_signup);
         ConfirmPasword=(EditText)myView.findViewById(R.id.conf_password_signup);
 
-
+       // OnClick on Save Button
         myView.findViewById(R.id.save_signup_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-
+                //&ver = EditText.ToString
                 UserLastName = LastName.getText().toString();
                 userFirstName = FirstName.getText().toString();
                 UserAddress = Address.getText().toString();
@@ -65,8 +66,11 @@ public class signup extends Fragment  {
                 UserPassword = Password.getText().toString();
                 UserConfirmPassword = ConfirmPasword.getText().toString();
 
+                  // tast if EditText Is Empty
                 if (!(userFirstName.isEmpty() || UserLastName.isEmpty() || UserAddress.isEmpty() || UserEmail.isEmpty() || UserPhonNaber.isEmpty()
                         || UserNAME.isEmpty() || UserPassword.isEmpty() || UserConfirmPassword.isEmpty())) {
+
+                     // input Parse Table --> "Sighup"
                     ParseObject sighup = new ParseObject("Sighup");
                     sighup.put("FirstName", userFirstName);
                     sighup.put("LastName", UserLastName);
@@ -76,16 +80,21 @@ public class signup extends Fragment  {
                     sighup.put("UserName", UserNAME);
                     sighup.put("Password", UserPassword);
                     sighup.put("ConfirmPassword", UserConfirmPassword);
+
                     if (UserPassword.equals(UserConfirmPassword)) {
                         sighup.saveInBackground();
                         Toast.makeText(getActivity(), "Welcome " + userFirstName + " To KID-SAFE Family" + '\n' + "Your User: " + UserNAME + " Enjoy!!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+
+                          // case that all input as in the table go page back
+                        if (getFragmentManager().getBackStackEntryCount() > 0) {
+                            getFragmentManager().popBackStack();
+                        }
+
+                    } else {
                         Toast.makeText(getActivity(), "Your Password Is Not Math,Try Again", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getActivity(), "Please Complete All The Details", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -100,5 +109,8 @@ public class signup extends Fragment  {
 
 
 }
+
+
+
 
 

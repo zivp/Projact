@@ -58,10 +58,6 @@ public class myMainScreen extends Activity {
             newfragment=new signup();
 
         }
-        else if(v==findViewById(R.id.go_btn))
-        {
-            newfragment=new main_menu();
-        }
         else
         {
             newfragment=new login();
