@@ -17,12 +17,13 @@ public class myMainScreen extends Activity {
     EditText password;
     public static final String APPLICATION_ID = "iqR5A9NLhvxuHH4t2Yk7yg4jEfLyA0KDHsT6dsUq";
     public static final String CLIENT_KEY = "zL75CMfUkUkb4PvHc7ROojcoANmxT6uPwcFQcI06";
-
+    public static String DadId="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //parse parse parse parse parse parse parse parse
 

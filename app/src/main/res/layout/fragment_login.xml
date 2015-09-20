@@ -47,6 +47,7 @@
         android:layout_width="405dp"
         android:layout_height="30dp"
         android:id="@+id/ChackPassword"
+        android:inputType="textPassword"
         android:background="#ffffffff"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true" />

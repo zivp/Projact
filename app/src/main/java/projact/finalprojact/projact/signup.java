@@ -9,12 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 /**
  * Created by Admin on 12/08/2015.
  */
 public class signup extends Fragment  {
+
+
 
     Button Save;
 
@@ -71,7 +75,7 @@ public class signup extends Fragment  {
                         || UserNAME.isEmpty() || UserPassword.isEmpty() || UserConfirmPassword.isEmpty())) {
 
                      // input Parse Table --> "Sighup"
-                    ParseObject sighup = new ParseObject("Sighup");
+                    final ParseObject sighup = new ParseObject("Sighup");
                     sighup.put("FirstName", userFirstName);
                     sighup.put("LastName", UserLastName);
                     sighup.put("Address", UserAddress);
@@ -82,11 +86,22 @@ public class signup extends Fragment  {
                     sighup.put("ConfirmPassword", UserConfirmPassword);
 
                     if (UserPassword.equals(UserConfirmPassword)) {
-                        sighup.saveInBackground();
-                        Toast.makeText(getActivity(), "Welcome " + userFirstName + " To KID-SAFE Family" + '\n' + "Your User: " + UserNAME + " Enjoy!!", Toast.LENGTH_SHORT).show();
+                        sighup.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(ParseException e) {
+                                                        if(e==null){
+                                                            String DadId=sighup.getObjectId();
+                                                          String  Id=DadId;
+                                                        }
+                                                        else
+                                                            return;
+                                                    }
+                                                });
+                                Toast.makeText(getActivity(), "Welcome " + userFirstName + " To KID-SAFE Family" + '\n' + "Your User: " + UserNAME + " Enjoy!!", Toast.LENGTH_SHORT).show();
 
                           // case that all input as in the table go page back
                         if (getFragmentManager().getBackStackEntryCount() > 0) {
+
                             getFragmentManager().popBackStack();
                         }
 

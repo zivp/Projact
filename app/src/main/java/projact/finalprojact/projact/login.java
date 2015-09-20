@@ -2,6 +2,8 @@ package projact.finalprojact.projact;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +29,13 @@ public class login extends Fragment {
     String UserStringUserName;
     int FlagChack=0;
 
+    String idDad;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View LoginView= inflater.inflate(R.layout.fragment_login, container, false);
+
 
            ChackPassword=(EditText)LoginView.findViewById(R.id.ChackPassword);
            ChackUserName=(EditText)LoginView.findViewById(R.id.ChackUserName);
@@ -48,21 +53,36 @@ public class login extends Fragment {
                    return;}
 
                   //pop from Table
-                   ParseQuery<ParseObject> Query=ParseQuery.getQuery("Sighup");
+                   final ParseQuery<ParseObject> Query=ParseQuery.getQuery("Sighup");
 
                    Query.whereEqualTo("UserName", UserStringUserName);
                    Query.whereEqualTo("Password", UserStringPassword);
+
 
                    Query.findInBackground( new FindCallback<ParseObject>() {
                        public void done(List<ParseObject> results, ParseException e) {
                            if (results.size()>0) {
                                //flag
                                FlagChack = 1;
+
+                               for(int index=0;index <results.size();index++)
+                               {
+                             idDad= results.get(index).getObjectId();
+
+                               }
+                               SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                               SharedPreferences.Editor editor = sharedPref.edit();
+                               editor.putString(getString(R.string.DadId),idDad );
+                               editor.commit();
+
+                              // Toast.makeText(getActivity(), idDad, Toast.LENGTH_SHORT).show();
+
                            } else {
                                Toast.makeText(getActivity(), "Eror !!!"+'\n'+ "One Or More Of your Incorrect Information", Toast.LENGTH_SHORT).show();
                                return;
 
                            }
+
                            //Open Main_Menu Page
                            if (FlagChack == 1) {
                                Fragment newfragment;
@@ -92,4 +112,10 @@ public class login extends Fragment {
         return LoginView;
     }
 
+public String SetString(String idDad)
+{
+    String x =idDad;
+    return x;
+
+}
 }
