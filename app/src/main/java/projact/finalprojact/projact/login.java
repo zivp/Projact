@@ -112,10 +112,4 @@ public class login extends Fragment {
         return LoginView;
     }
 
-public String SetString(String idDad)
-{
-    String x =idDad;
-    return x;
-
-}
 }
