@@ -28,20 +28,6 @@
         android:id="@+id/last_nameKidEditText"
         android:background="#ffffffff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Name"
-        android:id="@+id/AddressKidText"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/UserNameKidEditText"
-        android:layout_gravity="center_horizontal"
-        android:background="#ffffffff" />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,6 +59,52 @@
         android:background="#ffffffff" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:id="@+id/AddressKidText"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserNameKidEditText"
+        android:background="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:id="@+id/textView13"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/kid_user_pass"
+        android:inputType="number"
+        android:background="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Password"
+        android:id="@+id/textView14"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/kid_user_Confirm_pass"
+        android:inputType="number"
+        android:background="#ffffffff" />
+
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/DadId"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,9 +112,13 @@
         android:id="@+id/save_Kid_btn"
         android:onClick="onClick"
         android:layout_gravity="center_horizontal" />
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/DadId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:id="@+id/BackAddkidToMenu"
+        android:onClick="onClick"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

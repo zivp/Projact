@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="63dp"
+        android:id="@+id/horizontalScrollView2"
+        android:layout_weight="0.91">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/kids_pic_RL"></RelativeLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="308dp"
+        android:id="@+id/fragment_tochange"
+        android:layout_alignParentEnd="true">
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView">
+        <TabWidget
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Sunday"
+                android:id="@+id/Sunday_btn"
+                android:onClick="ChooseDay"
+                android:textColor="#ff000000" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Monday"
+                android:id="@+id/Monday_btn"
+                android:onClick="ChooseDay"
+                android:textColor="#ff000000" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Tuesday"
+                android:id="@+id/Tuesday_btn"
+                android:onClick="ChooseDay"
+                android:textColor="#ff000000" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Wednesday"
+                android:id="@+id/Wednesday_btn"
+                android:onClick="ChooseDay"
+                android:textColor="#ff000000" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Thursday"
+                android:id="@+id/Thursday_btn"
+                android:onClick="ChooseDay" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Friday"
+                android:id="@+id/Friday_btn"
+                android:onClick="ChooseDay" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Saturday"
+                android:id="@+id/Saturday_btn"
+                android:onClick="ChooseDay" />
+            </TabWidget>
+    </HorizontalScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:text="back to menu"
+        android:id="@+id/schedule2menu_btn"
+        android:onClick="schedule2menu"
+        android:textColor="#ff000000" />
+
+</LinearLayout>
