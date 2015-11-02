@@ -26,15 +26,11 @@ dependencies {
     compile files('libs/Parse-1.9.2.jar')
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.google.android.gms:play-services:7.5.0'
-<<<<<<< HEAD
     //parse------------------------------------------
     compile 'com.parse.bolts:bolts-android:1.+'
     compile files('libs/bolts-android-1.2.0.jar')
     compile files('libs/Parse-1.9.2.jar')
     //parse------------------------------------------
-=======
-    compile 'com.android.support:appcompat-v7:22.1.1'
->>>>>>> refs/remotes/zivp/master
 }
 
 
