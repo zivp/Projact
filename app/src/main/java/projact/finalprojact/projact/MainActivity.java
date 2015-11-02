@@ -21,6 +21,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.splach);
 
 
+
+
         textView2 = (TextView) findViewById(R.id.textLowding);
         progressBar=(ProgressBar)findViewById(R.id.progressBar1);
 

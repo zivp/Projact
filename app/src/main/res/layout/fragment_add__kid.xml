@@ -6,120 +6,83 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First name"
-        android:id="@+id/textView5"
+        android:id="@+id/FirstNameText"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/first_name_signup"
+        android:id="@+id/first_nameKidEditText"
         android:background="#ffffffff" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last name"
-        android:id="@+id/textView6"
+        android:id="@+id/LastNameKidText"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/last_name_signup"
+        android:id="@+id/last_nameKidEditText"
         android:background="#ffffffff" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Addres"
-        android:id="@+id/textView7"
+        android:text="User Name"
+        android:id="@+id/AddressKidText"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/address_signup"
+        android:id="@+id/UserNameKidEditText"
         android:layout_gravity="center_horizontal"
         android:background="#ffffffff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E-mail"
-        android:id="@+id/textView8"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email_signup"
-        android:layout_gravity="center_horizontal"
-        android:background="#ffffffff" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone namber"
-        android:id="@+id/textView12"
+        android:id="@+id/PhonKidText"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/phone_signup"
+        android:id="@+id/phoneKidEditText"
+        android:inputType="number"
         android:layout_gravity="center_horizontal"
         android:background="#ffffffff" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user name"
-        android:id="@+id/textView9"
+        android:text="Age"
+        android:id="@+id/AgeText"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username_signup"
+        android:id="@+id/KidAgeEditText"
+        android:inputType="number"
         android:background="#ffffffff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:id="@+id/textView10"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password_signup"
-        android:layout_gravity="center_horizontal"
-        android:background="#ffffffff" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confraim Password"
-        android:id="@+id/textView11"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/conf_password_signup"
-        android:background="#ffffffff" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/save_signup_btn"
+        android:text="Save Kid"
+        android:id="@+id/save_Kid_btn"
         android:onClick="onClick"
         android:layout_gravity="center_horizontal" />
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/DadId"/>
 
 </LinearLayout>

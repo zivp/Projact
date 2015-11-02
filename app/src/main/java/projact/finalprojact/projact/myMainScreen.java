@@ -7,35 +7,65 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+
+import com.parse.Parse;
 
 public class myMainScreen extends Activity {
+<<<<<<< HEAD
+=======
+
+    EditText username;
+    EditText password;
+    public static final String APPLICATION_ID = "iqR5A9NLhvxuHH4t2Yk7yg4jEfLyA0KDHsT6dsUq";
+    public static final String CLIENT_KEY = "zL75CMfUkUkb4PvHc7ROojcoANmxT6uPwcFQcI06";
+    public static String DadId="";
+>>>>>>> refs/remotes/zivp/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FragmentManager fm= getFragmentManager();
-        FragmentTransaction transaction=fm.beginTransaction();
-        login signupFragment=new login();
-        transaction.add(R.id.fragment_placeholder,signupFragment);
+
+
+        //parse parse parse parse parse parse parse parse
+
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "iqR5A9NLhvxuHH4t2Yk7yg4jEfLyA0KDHsT6dsUq", "zL75CMfUkUkb4PvHc7ROojcoANmxT6uPwcFQcI06");
+
+
+
+        //parse parse parse parse parse parse parse parse
+
+
+
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        login signupFragment = new login();
+        transaction.add(R.id.fragment_placeholder, signupFragment);
         transaction.commit();
 
     }
+
+
+
+
+
+
     public void onClick(View v) {
 
         Fragment newfragment;//creating acopy to hold the layout fragment
-          if(v ==findViewById(R.id.sig_up_btn))
-          {
-              newfragment=new signup();
-          }
-          else if(v==findViewById(R.id.go_btn))
-          {
-              newfragment=new main_menu();
-          }
+        if(v ==findViewById(R.id.sig_up_btn))
+        {
+            newfragment=new signup();
+
+        }
         else
-          {
-              newfragment=new login();
-          }
+        {
+            newfragment=new login();
+        }
         FragmentTransaction transaction=getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_placeholder, newfragment);
         transaction.addToBackStack(null);
@@ -52,3 +82,15 @@ public class myMainScreen extends Activity {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
