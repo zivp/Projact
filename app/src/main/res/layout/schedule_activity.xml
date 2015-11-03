@@ -7,14 +7,9 @@
 
     <HorizontalScrollView
         android:layout_width="fill_parent"
-        android:layout_height="63dp"
-        android:id="@+id/horizontalScrollView2"
-        android:layout_weight="0.91">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/kids_pic_RL"></RelativeLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView_kidsImage"
+        android:layout_weight="1">
     </HorizontalScrollView>
 
     <LinearLayout
@@ -87,7 +82,6 @@
         android:layout_height="62dp"
         android:text="back to menu"
         android:id="@+id/schedule2menu_btn"
-        android:onClick="schedule2menu"
         android:textColor="#ff000000" />
 
 </LinearLayout>

@@ -5,8 +5,9 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -21,16 +22,24 @@ public class Schedule_Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_activity);
-        RelativeLayout rl=(RelativeLayout)findViewById(R.id.kids_pic_RL);
-        ImageView im=new ImageView(this);
-        im.setImageResource(R.drawable.shado);
-        rl.addView(im);
         Fragment newfragment;
         newfragment = new Schedule_List_AllEvent();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_tochange, newfragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
+
+
+        HorizontalScrollView sv=(HorizontalScrollView)findViewById(R.id.scrollView_kidsImage);
+        LinearLayout ll =new LinearLayout(this);//(LinearLayout)findViewById(R.id.linear);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        sv.addView(ll);
+        for(int i = 0; i < 10; i++) {
+            ImageView kidImage=new ImageView(this);
+            kidImage.setImageResource(R.drawable.shado);
+            ll.addView(kidImage);
+        }
     }
     public void NewEventScreen(View view){
         screennumber=2;

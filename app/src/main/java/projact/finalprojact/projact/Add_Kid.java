@@ -4,21 +4,24 @@ package projact.finalprojact.projact;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 
@@ -38,16 +41,11 @@ public class Add_Kid extends Fragment {
     private String KidLastName;
     private String KidPhonNamber;
     private String KidPass;
-    private String kid_id;
-    private TextView ObjactDadId;
-    private int FlagChack=0;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View Kid=inflater.inflate(R.layout.fragment_add__kid, container, false);
+        View Kid=inflater.inflate(R.layout.add__kid, container, false);
 
         FirstNameKid=(EditText)Kid.findViewById(R.id.first_nameKidEditText);
         LastNameKid=(EditText)Kid.findViewById(R.id.last_nameKidEditText);
@@ -77,6 +75,12 @@ public class Add_Kid extends Fragment {
                     //checking if we forget something
                     if(!(KidAge.isEmpty()||KidUserName.isEmpty()||KidPhonNamber.isEmpty()||KidLastName.isEmpty()||KidFirstName.isEmpty()||KidPass.isEmpty()))
                     {
+                        Bitmap bitmap = BitmapFactory.decodeFile(myMainScreen.imgDecodableString);//BitmapFactory.decodeResource(getResources(),R.drawable.shado);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] image = stream.toByteArray();
+                        ParseFile file = new ParseFile("androidbegin.png", image);
+                        file.saveInBackground();
                         //update the parse kids table....
                         ParseObject AddKidTable = new ParseObject("Kids");
                         AddKidTable.put("Age",KidAge);
@@ -86,20 +90,15 @@ public class Add_Kid extends Fragment {
                         AddKidTable.put("PhonNamber",KidPhonNamber);
                         AddKidTable.put("DadId",DadIdFromPref);
                         AddKidTable.put("Password",KidPass);
-
+                        AddKidTable.put("Image",file);
                         AddKidTable.saveInBackground();
+
                         Toast.makeText(getActivity(), "Kid : " + KidFirstName + " Writh", Toast.LENGTH_SHORT).show();
                         //saving kid PARSE ID in preferences to reuse....
                         getkidID();
                         putallkidIDindadtable();
 
-                        /*
-                        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                        String old_contact_list=sharedPref.getString("KIDS_ID_PREF","");
-                        Toast.makeText(getActivity(),old_contact_list, Toast.LENGTH_SHORT).show();
-                        */
-                        // adding the kid parse objectID to dad Table in filed "Kids_ID"........
-                    }
+                        }
                     else{
                         Toast.makeText(getActivity(), "Mising Diatals", Toast.LENGTH_SHORT).show();
                     }
@@ -143,7 +142,7 @@ public class Add_Kid extends Fragment {
                     SharedPreferences.Editor editor = prefernces.edit();
                     //open dad parse Table
                     editor.putString("KIDS_ID_PREF", old_contact_list + id + ",");
-                    //saving kid user name in pref to use in chat
+
                     editor.putString("CONTACT_NAMES", old_contactnames + USERNAME+ "," );
                     editor.commit();
                     putallkidIDindadtable();

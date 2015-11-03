@@ -58,10 +58,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:background="@drawable/shado"
+        android:id="@+id/ConversationUserImage"
         android:layout_above="@+id/listmessage"
         android:layout_alignEnd="@+id/listmessage"
-        android:layout_toEndOf="@+id/chat" />
+        android:layout_toEndOf="@+id/user_name_chat_win"
+        android:layout_alignTop="@+id/user_name_chat_win" />
 
 </RelativeLayout>
