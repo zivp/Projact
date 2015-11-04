@@ -16,7 +16,7 @@ import com.parse.SaveCallback;
 /**
  * Created by Admin on 12/08/2015.
  */
-public class signup extends Fragment  {
+public class signup extends Fragment {
 
 
 
@@ -34,7 +34,7 @@ public class signup extends Fragment  {
     String userFirstName;
     String UserLastName;
     String UserAddress;
-    String  UserEmail;
+    String UserEmail;
     String UserPhonNaber;
     String UserNAME;
     String UserPassword;
@@ -91,7 +91,7 @@ public class signup extends Fragment  {
                                                     public void done(ParseException e) {
                                                         if(e==null){
                                                             String DadId=sighup.getObjectId();
-                                                          String  Id=DadId;
+                                                          String Id=DadId;
                                                         }
                                                         else
                                                             return;

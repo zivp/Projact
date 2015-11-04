@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    //this value is for know if the user is dad or kid ...if its kid the value-
     ProgressBar progressBar;
     int progressStatus = 0;
     Handler handler = new Handler();
@@ -19,10 +20,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splach);
-
-
-
-
         textView2 = (TextView) findViewById(R.id.textLowding);
         progressBar=(ProgressBar)findViewById(R.id.progressBar1);
 
@@ -50,6 +47,9 @@ public class MainActivity extends Activity {
                 }
                 if (progressStatus==100)
                 {
+
+
+
                     Intent i = new Intent(MainActivity.this, myMainScreen.class);
                     startActivity(i);
                 }
