@@ -86,6 +86,30 @@ public class Chat_Contact_List extends ActionBarActivity {
                         }
                     }
                 });
+                ParseQuery<ParseObject> ParentTible = ParseQuery.getQuery("Sighup");
+                ParentTible.getInBackground(singleID[indx], new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(final ParseObject parseObject, ParseException e3) {
+                        if (e3 == null) {
+                            for(int indx2=0;indx2<SingleUserNam.length;indx2++) {
+                                if (parseObject.getString("UserName").matches(SingleUserNam[indx2])) {
+                                    ParseFile fileObject = (ParseFile) parseObject.get("Image");
+                                    fileObject.getDataInBackground(new GetDataCallback() {
+                                        public void done(byte[] data, ParseException e4) {
+                                            if (e4 == null) {
+                                                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                                // Close progress dialog
+                                                singeluserAdapArry.add(new Singel_User(true, bmp, parseObject.getString("FirstName")));
+                                            }
+                                            else
+                                                singeluserAdapArry.add(new Singel_User(true, parseObject.getString("FirstName")));
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
             }
         }
     }

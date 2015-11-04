@@ -35,12 +35,12 @@ public class Add_Kid extends Fragment {
     private EditText Pass;
     private EditText ConfirmPass;
 
-    private String KidAge;
-    private String KidUserName;
-    private String KidFirstName;
-    private String KidLastName;
-    private String KidPhonNamber;
-    private String KidPass;
+    static protected String KidAge;
+    static protected String KidUserName;
+    static protected String KidFirstName;
+    static protected String KidLastName;
+    static protected String KidPhonNamber;
+    static protected String KidPass;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class Add_Kid extends Fragment {
 
                         Toast.makeText(getActivity(), "Kid : " + KidFirstName + " Writh", Toast.LENGTH_SHORT).show();
                         //saving kid PARSE ID in preferences to reuse....
-                        getkidID();
+
                         putallkidIDindadtable();
 
                         }
@@ -125,13 +125,14 @@ public class Add_Kid extends Fragment {
     //function that pop the kid Object ID from parse and save the ID in preferenc..
     //the function are saving also the user name in preferenc......................
     private void getkidID(){
+        Toast.makeText(getActivity(),KidUserName+KidPass,Toast.LENGTH_SHORT).show();
         ParseQuery<ParseObject> Query=ParseQuery.getQuery("Kids");
         Query.whereEqualTo("UserName", KidUserName);
         Query.whereEqualTo("Password",KidPass);
         Query.findInBackground( new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                if (parseObjects.size()>0) {
+            public void done(List<ParseObject> parseObjects, ParseException e2) {
+                if (e2==null) {
                     String id = parseObjects.get(0).getObjectId();//geting parse objectID
                     String USERNAME = parseObjects.get(0).getString("UserName");//get kid user name
                     Toast.makeText(getActivity(), USERNAME + "--" + id, Toast.LENGTH_SHORT).show();
@@ -142,7 +143,6 @@ public class Add_Kid extends Fragment {
                     SharedPreferences.Editor editor = prefernces.edit();
                     //open dad parse Table
                     editor.putString("KIDS_ID_PREF", old_contact_list + id + ",");
-
                     editor.putString("CONTACT_NAMES", old_contactnames + USERNAME+ "," );
                     editor.commit();
                     putallkidIDindadtable();
@@ -152,6 +152,7 @@ public class Add_Kid extends Fragment {
     }
     //function are save get the kids id from the preferences and put it in parse dad table
     private void putallkidIDindadtable(){
+        getkidID();
         SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String dad_id=prefernces.getString(getString(R.string.DadId),"");
         ParseQuery<ParseObject> myquery = ParseQuery.getQuery("Sighup");
@@ -168,5 +169,8 @@ public class Add_Kid extends Fragment {
                 }
             }
         });
+    }
+    public void SaveNewKid(View view){
+
     }
 }

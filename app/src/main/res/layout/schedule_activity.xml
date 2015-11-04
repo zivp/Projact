@@ -6,10 +6,11 @@
 
 
     <HorizontalScrollView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView_kidsImage"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal">
     </HorizontalScrollView>
 
     <LinearLayout
@@ -34,46 +35,53 @@
                 android:text="Sunday"
                 android:id="@+id/Sunday_btn"
                 android:onClick="ChooseDay"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000"
+                android:enabled="true" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Monday"
                 android:id="@+id/Monday_btn"
                 android:onClick="ChooseDay"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000"
+                android:enabled="true" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Tuesday"
                 android:id="@+id/Tuesday_btn"
                 android:onClick="ChooseDay"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000"
+                android:enabled="true" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Wednesday"
                 android:id="@+id/Wednesday_btn"
                 android:onClick="ChooseDay"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000"
+                android:enabled="true" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Thursday"
                 android:id="@+id/Thursday_btn"
-                android:onClick="ChooseDay" />
+                android:onClick="ChooseDay"
+                android:enabled="true" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Friday"
                 android:id="@+id/Friday_btn"
-                android:onClick="ChooseDay" />
+                android:onClick="ChooseDay"
+                android:enabled="true" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Saturday"
                 android:id="@+id/Saturday_btn"
-                android:onClick="ChooseDay" />
+                android:onClick="ChooseDay"
+                android:enabled="true" />
             </TabWidget>
     </HorizontalScrollView>
 

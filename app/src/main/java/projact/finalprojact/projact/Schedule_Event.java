@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class Schedule_Event extends Fragment {
 
+
     TextView day;
     TextView Set_Start_Time;
     TextView Set_End_Time;
@@ -25,5 +26,4 @@ public class Schedule_Event extends Fragment {
 
         return event;
     }
-
 }
