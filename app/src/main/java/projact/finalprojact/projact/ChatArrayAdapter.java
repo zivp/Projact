@@ -47,7 +47,7 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
         View v = ConvertView;
         if (v == null) {
             LayoutInflater infleter = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = infleter.inflate(R.layout.chat, perent, false);
+            v = infleter.inflate(R.layout.chat_single_message, perent, false);
         }
         layout = (LinearLayout) v.findViewById(R.id.Messag1);
         ChatMessage Messageobj = getItem(position);

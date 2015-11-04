@@ -4,18 +4,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="321dp"
-        android:layout_gravity="center"
+        android:layout_height="298dp"
         android:background="#ff9c9fff">
-
-        <ListView
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:id="@+id/Events_ListView"
-            android:background="#ffffffff"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textView19"
-            android:layout_above="@+id/button3" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,26 +13,47 @@
             android:text="Day:"
             android:id="@+id/textView19"
             android:textSize="30sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/Events_ListView" />
+            android:layout_above="@+id/scrolevent"
+            android:layout_alignStart="@+id/scrolevent"
+            android:textColor="#fffff1fd" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD EVENT"
             android:id="@+id/button3"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
             android:textSize="20sp"
-            android:onClick="NewEventScreen" />
+            android:onClick="NewEventScreen"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ListEvent_Today"
             android:textSize="30sp"
-            android:layout_above="@+id/Events_ListView"
-            android:layout_toEndOf="@+id/textView19" />
+            android:layout_above="@+id/scrolevent"
+            android:layout_toEndOf="@+id/textView19"
+            android:textColor="#fffff1fd" />
+
+        <ScrollView
+            android:layout_width="200dp"
+            android:layout_height="160dp"
+            android:id="@+id/scrolevent"
+            android:background="#fffff1fd"
+            android:layout_above="@+id/button3"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/kidNameListEvent"
+            android:textSize="30sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView19"
+            android:textColor="#fffff1fd" />
+
     </RelativeLayout>
 
 

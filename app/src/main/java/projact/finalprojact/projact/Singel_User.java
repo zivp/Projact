@@ -1,26 +1,25 @@
 package projact.finalprojact.projact;
 
-import android.widget.ImageView;
+import android.graphics.Bitmap;
 
 /**
  * Created by Admin on 06/10/2015.
  */
 public class Singel_User {
     String UserName;
-    ImageView UserImeg;
+    Bitmap UserImage;
 
-    public Singel_User(String userName, ImageView userImeg, boolean left) {
+    public Singel_User(boolean left,String userName) {
         UserName = userName;
-        UserImeg = userImeg;
         this.left = left;
     }
 
-    public ImageView getUserImeg() {
-        return UserImeg;
+    public Bitmap getUserImage() {
+        return UserImage;
     }
 
-    public void setUserImeg(ImageView userImeg) {
-        UserImeg = userImeg;
+    public void setUserImage(Bitmap userImage) {
+        UserImage = userImage;
     }
 
     protected boolean left;
@@ -43,9 +42,10 @@ public class Singel_User {
 
     public Singel_User(Object p0) {
     }
-    public Singel_User(Boolean left, String UserName){
+    public Singel_User(Boolean left,Bitmap bitmap, String UserName){
         super();
         this.left=left;
         this.UserName=UserName;
+        this.UserImage=bitmap;
     }
 }

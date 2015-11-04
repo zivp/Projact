@@ -3,6 +3,8 @@ package projact.finalprojact.projact;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -12,10 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +47,69 @@ public class Chat_Contact_List extends ActionBarActivity {
         list.setAdapter(singeluserAdapArry);
         //open contact list withe the function-fullList.....
         fulllist();
+
     }
     //open contact list.....................
     private void fulllist() {
         SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(this);
-        String mycontactlist = prefernces.getString("CONTACT_NAMES", "");
-        if (mycontactlist.isEmpty()) {
+        String UserNames = prefernces.getString("CONTACT_NAMES", "");
+        String UsersId=prefernces.getString("KIDS_ID_PREF", "");
+        if (UserNames.isEmpty()||UsersId.isEmpty()) {
             Toast.makeText(getApplication(), "add kid first", Toast.LENGTH_SHORT).show();
         } else
         {
-            String[] assis = mycontactlist.split(",");
-            for (int count = 0; count < assis.length; count++) {
-                singeluserAdapArry.add(new Singel_User(true, assis[count]));
+            String[] singleID=UsersId.split(",");
+            final String[] SingleUserNam = UserNames.split(",");
+            for (int indx = 0; indx < singleID.length; indx++) {
+
+                ParseQuery<ParseObject> KidsTable = ParseQuery.getQuery("Kids");
+                KidsTable.getInBackground(singleID[indx], new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(final ParseObject parseObject, ParseException e1) {
+                        if (e1 == null) {
+                            for(int indx2=0;indx2<SingleUserNam.length;indx2++) {
+                                if (parseObject.getString("UserName").matches(SingleUserNam[indx2])) {
+                                    ParseFile fileObject = (ParseFile) parseObject.get("Image");
+                                    fileObject.getDataInBackground(new GetDataCallback() {
+                                        public void done(byte[] data, ParseException e2) {
+                                            if (e2 == null) {
+                                                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                                // Close progress dialog
+                                                singeluserAdapArry.add(new Singel_User(true, bmp, parseObject.getString("Name")));
+                                            }
+                                            else
+                                                singeluserAdapArry.add(new Singel_User(true, parseObject.getString("Name")));
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
+                ParseQuery<ParseObject> ParentTible = ParseQuery.getQuery("Sighup");
+                ParentTible.getInBackground(singleID[indx], new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(final ParseObject parseObject, ParseException e3) {
+                        if (e3 == null) {
+                            for(int indx2=0;indx2<SingleUserNam.length;indx2++) {
+                                if (parseObject.getString("UserName").matches(SingleUserNam[indx2])) {
+                                    ParseFile fileObject = (ParseFile) parseObject.get("Image");
+                                    fileObject.getDataInBackground(new GetDataCallback() {
+                                        public void done(byte[] data, ParseException e4) {
+                                            if (e4 == null) {
+                                                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                                // Close progress dialog
+                                                singeluserAdapArry.add(new Singel_User(true, bmp, parseObject.getString("FirstName")));
+                                            }
+                                            else
+                                                singeluserAdapArry.add(new Singel_User(true, parseObject.getString("FirstName")));
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
             }
         }
     }
@@ -57,6 +118,7 @@ public class Chat_Contact_List extends ActionBarActivity {
     ///////////////////////////////////////////////////////////////////////////////////////////////
     public class Singel_User_Array_Adapter extends ArrayAdapter<Singel_User> {
         private TextView User_Name;
+        private ImageView UserImage;
         private List<Singel_User> Contact_List = new ArrayList<Singel_User>();
         private LinearLayout layout;
 
@@ -86,9 +148,9 @@ public class Chat_Contact_List extends ActionBarActivity {
             layout = (LinearLayout) v.findViewById(R.id.user);
             Singel_User userobj = getItem(position);
             User_Name = (TextView) v.findViewById(R.id.singel_user_name);
-
+            UserImage=(ImageView)v.findViewById(R.id.SingleUserImage);
+            UserImage.setImageBitmap(userobj.UserImage);
             User_Name.setText(userobj.UserName);
-
             layout.setGravity(Gravity.LEFT);//object side
             onclick(v,position,User_Name.getText().toString());
             return v;
