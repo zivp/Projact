@@ -30,9 +30,8 @@
         android:id="@+id/ChackUserName"
         android:layout_below="@+id/textView2"
         android:background="#ffffffff"
-        android:layout_alignStart="@+id/kid_user_Confirm_pass"
-        android:layout_alignEnd="@+id/kid_user_Confirm_pass"
-        android:nestedScrollingEnabled="true" />
+        android:layout_alignStart="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
         android:text="password"
         android:textSize="30sp"
         android:id="@+id/textView3"
-        android:layout_below="@+id/kid_user_pass"
+        android:layout_below="@+id/editText"
         android:layout_alignEnd="@+id/textView2"
         android:layout_gravity="center_horizontal" />
 
@@ -51,18 +50,17 @@
         android:inputType="textPassword"
         android:background="#ffffffff"
         android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:nestedScrollingEnabled="true" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SIGN UP"
         android:id="@+id/sig_up_btn"
-        android:layout_below="@+id/kid_user_Confirm_pass"
+        android:layout_below="@+id/editText2"
         android:layout_marginTop="132dp"
         android:textSize="20sp"
-        android:layout_alignStart="@+id/kid_user_Confirm_pass"
+        android:layout_alignStart="@+id/editText2"
         android:onClick="onClick"
         android:layout_gravity="center_horizontal" />
 
@@ -73,7 +71,7 @@
         android:textSize="20sp"
         android:id="@+id/go_btn"
         android:layout_alignBottom="@+id/sig_up_btn"
-        android:layout_alignEnd="@+id/kid_user_Confirm_pass"
+        android:layout_alignEnd="@+id/editText2"
         android:layout_gravity="center_horizontal"
         android:onClick="onClick" />
 
