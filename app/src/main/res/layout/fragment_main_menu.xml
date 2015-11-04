@@ -3,108 +3,56 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    style="@style/AppTheme"
-    android:weightSum="1">
+    style="@style/AppTheme">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="411dp"
-        android:layout_weight="0.89">
-        <Button
-            android:layout_width="112dp"
-            android:layout_height="120dp"
-            android:id="@+id/btnTOSchedule"
-            android:gravity="center_horizontal"
-            android:onClick="toSchedule"
-            android:textSize="30sp"
-            android:background="@drawable/calendar"
-            android:layout_marginBottom="23dp"
-            android:layout_above="@+id/btnTOchat"
-            android:layout_alignStart="@+id/btnTOchat"
-            android:layout_alignEnd="@+id/btnTOchat" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAFEKID"
+        android:id="@+id/textView4"
+        android:textSize="35sp"
+        android:gravity="top|left|start"
+        android:layout_gravity="center_horizontal"
+        style="@style/AppTheme" />
 
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/btnTOchat"
-            android:gravity="center_horizontal"
-            android:textSize="30sp"
-            android:background="@drawable/chat"
-            android:layout_marginEnd="42dp"
-            android:layout_alignTop="@+id/btnTOStatistics"
-            android:layout_alignParentEnd="true" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Schedule"
+        android:id="@+id/btnTOSchedule"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/btnTOlocation"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:onClick="tolocation"
-            android:textSize="30sp"
-            android:background="@drawable/maps"
-            android:layout_alignTop="@+id/btnTOSchedule"
-            android:layout_alignStart="@+id/btnTOStatistics" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="location"
+        android:id="@+id/btnTOlocation"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:onClick="tolocation" />
 
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/btnTOStatistics"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:textSize="30sp"
-            android:background="@drawable/statisc"
-            android:layout_marginBottom="23dp"
-            android:layout_marginStart="36dp"
-            android:layout_above="@+id/btnTOaddkid"
-            android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="chat"
+        android:id="@+id/btnTOchat"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="220dp"
-            android:layout_height="112dp"
-            android:id="@+id/btnTOaddkid"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:textSize="30sp"
-            android:background="@drawable/add"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/btnTOStatistics"
-            android:layout_alignEnd="@+id/btnTOStatistics" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Statistics"
+        android:id="@+id/btnTOStatistics"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:id="@+id/details_btn"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:textSize="30sp"
-            android:background="@drawable/setting"
-            android:layout_alignTop="@+id/btnTOaddkid"
-            android:layout_alignStart="@+id/btnTOchat" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SAFEKID"
-            android:id="@+id/textView4"
-            android:textSize="40sp"
-            android:gravity="top|left|start"
-            style="@style/AppTheme"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/delete_btn"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="162dp"
-            android:layout_height="wrap_content"
-            android:text="delete"
-            android:id="@+id/delete_btn"
-            android:layout_gravity="right"
-            android:gravity="center_horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/textView4" />
-
-    </RelativeLayout>
-
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="add kid"
+        android:id="@+id/btnTOaddkid"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
 </LinearLayout>
