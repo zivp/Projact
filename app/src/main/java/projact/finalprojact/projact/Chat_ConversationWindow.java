@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
@@ -17,7 +18,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -28,15 +32,13 @@ public class Chat_ConversationWindow extends Activity {
     private ChatArrayAdapter abp;
     private ListView list;
     private EditText chattext;
+    private EditText usernametitle;
     private Button send;
     private Button back;
 
 
-    static protected String FriendFirstName="";
-    static protected String FriendParseObjectID="";
-    static protected Bitmap FriendImage;
-
     private String userMessage;
+    private String friend_id;
     private String MY_ID;
     private static Thread mythread;
     private static boolean threadRunning;
@@ -47,16 +49,73 @@ public class Chat_ConversationWindow extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_conversation_win);
         final SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(this);
-        MY_ID=prefernces.getString(getString(R.string.user_parse_id),"");
-        //set friend image
-        ((ImageView)findViewById(R.id.ConversationUserImage)).setImageBitmap(FriendImage);
-        //set friend first name
-        ((TextView)findViewById(R.id.user_name_chat_win)).setText(FriendFirstName);
-        //open old message
-        GetingHistoryChat(FriendParseObjectID, MY_ID);
-        //checking every 2.5 seconds new message
-        checkingmessage(FriendParseObjectID, MY_ID);
-
+        SharedPreferences.Editor editor=prefernces.edit();
+        final String friendusername = prefernces.getString("CHATINGWITHE","");
+        if(!prefernces.getString("MY_USER_ID","").isEmpty())
+            MY_ID=prefernces.getString("MY_USER_ID","");
+        else
+            MY_ID=prefernces.getString(getString(R.string.DadId),"");
+        //GET CHAT FRIEND ID FROM PARSE....
+        String ConntactUserID=prefernces.getString("KIDS_ID_PREF","");
+        String[] Singel_ID=ConntactUserID.split(",");
+        for(int indx=0;indx<Singel_ID.length;indx++) {
+            //IN CASE THAT FRIEND IS KID
+            ParseQuery<ParseObject> KidsTable = ParseQuery.getQuery("Kids");
+            KidsTable.getInBackground(Singel_ID[indx], new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject parseObject, ParseException e2) {
+                    if (e2 == null) {
+                        final SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(Chat_ConversationWindow.this);
+                        final SharedPreferences.Editor editor = prefernces.edit();
+                        if(parseObject.getString("Name").matches(friendusername)) {
+                            editor.putString("CHAT_FRIEND_ID", parseObject.getObjectId()).apply();
+                            GetingHistoryChat(parseObject.getObjectId(), MY_ID);
+                            checkingmessage(parseObject.getObjectId(), MY_ID);
+                            ((TextView)findViewById(R.id.user_name_chat_win)).setText(parseObject.getString("Name"));
+                            final ParseFile fileObject = (ParseFile) parseObject.get("Image");
+                            fileObject.getDataInBackground(new GetDataCallback() {
+                                public void done(byte[] data, ParseException e2) {
+                                    if (e2 == null) {
+                                        Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                        // Close progress dialog
+                                        ((ImageView)findViewById(R.id.ConversationUserImage)).setImageBitmap(bmp);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            //IN CASE ITS DAD TABLE
+            ParseQuery<ParseObject> DadTable = ParseQuery.getQuery("Sighup");
+            DadTable.getInBackground(Singel_ID[indx], new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject parseObject, ParseException e2) {
+                    if (e2 == null) {
+                        final SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(Chat_ConversationWindow.this);
+                        final SharedPreferences.Editor editor = prefernces.edit();
+                        if (parseObject.getString("FirstName").matches(friendusername)) {
+                            editor.putString("CHAT_FRIEND_ID", parseObject.getObjectId()).apply();
+                            GetingHistoryChat(parseObject.getObjectId(), MY_ID);
+                            checkingmessage(parseObject.getObjectId(), MY_ID);
+                            ((TextView)findViewById(R.id.user_name_chat_win)).setText(parseObject.getString("FirstName"));
+                            final ParseFile fileObject = (ParseFile) parseObject.get("Image");
+                            fileObject.getDataInBackground(new GetDataCallback() {
+                                public void done(byte[] data, ParseException e2) {
+                                    if (e2 == null) {
+                                        Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                        // Close progress dialog
+                                        ((ImageView)findViewById(R.id.ConversationUserImage)).setImageBitmap(bmp);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        final String Friend_ID=prefernces.getString("CHAT_FRIEND_ID","");
+        //OPEN HISTORY CHAT WITHE USER X
 
         send = (Button) findViewById(R.id.btnsend);
         list = (ListView) findViewById(R.id.listmessage);
@@ -89,6 +148,7 @@ public class Chat_ConversationWindow extends Activity {
                 finish();
             }
         });
+
     }
     //*sanding function ...
     private boolean sendChatMessage() {
@@ -101,13 +161,15 @@ public class Chat_ConversationWindow extends Activity {
         return true;
     }
     private void send(){
+        final SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(Chat_ConversationWindow.this);
+        final String Friend_ID=prefernces.getString("CHAT_FRIEND_ID","");
         Time now = new Time();
         now.setToNow();
         String apptime= Integer.toString(now.hour)+":"+ Integer.toString(now.second);
         sendChatMessage();
         ParseObject newmessage = new ParseObject("Message");
         newmessage.put("Sender",MY_ID);
-        newmessage.put("Receiver",FriendParseObjectID);
+        newmessage.put("Receiver",Friend_ID);
         newmessage.put("txt",userMessage);
         newmessage.put("Read",false);
         newmessage.put("Time",apptime);
@@ -144,6 +206,7 @@ public class Chat_ConversationWindow extends Activity {
                 }
             }
         };mythread.start();
+
     }
     //open history chat from parse
     private void GetingHistoryChat(final String friend,final String me){

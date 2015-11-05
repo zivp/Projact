@@ -1,11 +1,6 @@
 package projact.finalprojact.projact;
 
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,40 +9,36 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.ParseFile;
+import com.parse.ParseException;
 import com.parse.ParseObject;
-
-import java.io.ByteArrayOutputStream;
+import com.parse.SaveCallback;
 
 /**
  * Created by Admin on 12/08/2015.
  */
 public class signup extends Fragment {
 
-    static protected boolean InSignUp=true;
 
 
+    Button Save;
 
-    private Button Save;
-    private EditText FirstName;
-    private EditText LastName;
-    private EditText UserName;
-    private EditText Password;
-    private EditText ConfirmPasword;
-    private EditText PhonNamber;
-    private EditText Email;
-    private EditText Address;
-    private EditText Birthday;
+    EditText Password;
+    EditText ConfirmPasword;
+    EditText PhonNamber;
+    EditText UserName;
+    EditText Email;
+    EditText Address;
+    EditText FirstName;
+    EditText LastName;
 
-    private String userFirstName;
-    private String UserLastName;
-    private String UserNAME;
-    private String UserPassword;
-    private String UserConfirmPassword;
-    private String UserPhonNaber;
-    private String UserEmail;
-    private String UserAddress;
-    private String UserBirthday;
+    String userFirstName;
+    String UserLastName;
+    String UserAddress;
+    String UserEmail;
+    String UserPhonNaber;
+    String UserNAME;
+    String UserPassword;
+    String UserConfirmPassword;
 
 
     @Override
@@ -56,18 +47,17 @@ public class signup extends Fragment {
         View myView=inflater.inflate(R.layout.fragment_signup, container, false);
 
       //casting EditText
-        LastName=(EditText)myView.findViewById(R.id.Add_Kid_L_Name);
-        FirstName=(EditText)myView.findViewById(R.id.Add_Kid_F_Name);
-        UserName=(EditText)myView.findViewById(R.id.Add_Kid_User_Name);
-        Password=(EditText)myView.findViewById(R.id.Add_Kid_Password);
-        ConfirmPasword=(EditText)myView.findViewById(R.id.Add_Kid_Confirm_Password);
-        PhonNamber=(EditText)myView.findViewById(R.id.Add_Kid_Phone_Number);
-        Email=(EditText)myView.findViewById(R.id.Add_Kid_Email);
-        Address=(EditText)myView.findViewById(R.id.Add_Kid_Address);
-        Birthday=(EditText)myView.findViewById(R.id.Add_Kid_Birthday);
+        LastName=(EditText)myView.findViewById(R.id.last_name_signup);
+        FirstName=(EditText)myView.findViewById(R.id.first_name_signup);
+        Address=(EditText)myView.findViewById(R.id.address_signup);
+        Email=(EditText)myView.findViewById(R.id.email_signup);
+        PhonNamber=(EditText)myView.findViewById(R.id.phone_signup);
+        UserName=(EditText)myView.findViewById(R.id.username_signup);
+        Password=(EditText)myView.findViewById(R.id.password_signup);
+        ConfirmPasword=(EditText)myView.findViewById(R.id.conf_password_signup);
+
        // OnClick on Save Button
         myView.findViewById(R.id.save_signup_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
 
                 //&ver = EditText.ToString
@@ -79,60 +69,60 @@ public class signup extends Fragment {
                 UserNAME = UserName.getText().toString();
                 UserPassword = Password.getText().toString();
                 UserConfirmPassword = ConfirmPasword.getText().toString();
-                UserBirthday = Birthday.getText().toString();
-                //checking if the username is already taken
-                //checking password
-                if(UserPassword.matches(UserConfirmPassword)) {
-                    // checking all the the user details
-                    if (!(userFirstName.isEmpty() || UserLastName.isEmpty() || UserAddress.isEmpty() || UserEmail.isEmpty() || UserPhonNaber.isEmpty()
-                            || UserNAME.isEmpty() || UserPassword.isEmpty() || UserConfirmPassword.isEmpty())) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(Menu_Main_Activity.imgDecodableString);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                        byte[] image = stream.toByteArray();
-                        ParseFile file = new ParseFile("androidbegin.png", image);
-                        file.saveInBackground();
-                        // create new parent user in parse
-                        ParseObject signup = new ParseObject("USER");
-                        //set all details
-                        signup.put("F_name", userFirstName);
-                        signup.put("L_name", UserLastName);
-                        signup.put("User_Name", UserNAME);
-                        signup.put("Password", UserPassword);
-                        signup.put("Address", UserAddress);
-                        signup.put("Phone_Number", UserPhonNaber);
-                        signup.put("Image", file);
-                        signup.put("Email", UserEmail);
-                        signup.put("Birthday", UserBirthday);
-                        signup.put("Parent_OR_kid", "p");
-                        signup.saveInBackground();
-                        //geting parent id from parse
-                        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-                        alertDialog.setTitle("Welcome "+userFirstName);
-                        alertDialog.setMessage("your user name is:"+UserNAME+
-                                "\nyour password:"+UserPassword);
-                        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Write your code here to execute after dialog closed
-                                Fragment newfragment;
-                                newfragment = new login();
-                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                transaction.replace(R.id.fragment_placeholder, newfragment);
-                                transaction.addToBackStack(null);
-                                transaction.commit();
-                            }
-                        });alertDialog.show();
-                        InSignUp=false;
-                        // case that all input as in the table go page back
+
+                  // tast if EditText Is Empty
+                if (!(userFirstName.isEmpty() || UserLastName.isEmpty() || UserAddress.isEmpty() || UserEmail.isEmpty() || UserPhonNaber.isEmpty()
+                        || UserNAME.isEmpty() || UserPassword.isEmpty() || UserConfirmPassword.isEmpty())) {
+
+                     // input Parse Table --> "Sighup"
+                    final ParseObject sighup = new ParseObject("Sighup");
+                    sighup.put("FirstName", userFirstName);
+                    sighup.put("LastName", UserLastName);
+                    sighup.put("Address", UserAddress);
+                    sighup.put("Email", UserEmail);
+                    sighup.put("PhonNamber", UserPhonNaber);
+                    sighup.put("UserName", UserNAME);
+                    sighup.put("Password", UserPassword);
+                    sighup.put("ConfirmPassword", UserConfirmPassword);
+
+                    if (UserPassword.equals(UserConfirmPassword)) {
+                        sighup.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(ParseException e) {
+                                                        if(e==null){
+                                                            String DadId=sighup.getObjectId();
+                                                          String Id=DadId;
+                                                        }
+                                                        else
+                                                            return;
+                                                    }
+                                                });
+                                Toast.makeText(getActivity(), "Welcome " + userFirstName + " To KID-SAFE Family" + '\n' + "Your User: " + UserNAME + " Enjoy!!", Toast.LENGTH_SHORT).show();
+
+                          // case that all input as in the table go page back
+                        if (getFragmentManager().getBackStackEntryCount() > 0) {
+
+                            getFragmentManager().popBackStack();
+                        }
+
                     } else {
-                        Toast.makeText(getActivity(), "Details incorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Your Password Is Not Math,Try Again", Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                }else
-                    Toast.makeText(getActivity(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Please Complete All The Details", Toast.LENGTH_SHORT).show();
+                }
             }
+
+
         });
+
+
         return myView;
+
     }
+
+
 }
 
 
