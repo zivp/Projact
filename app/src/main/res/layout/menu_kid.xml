@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/Menu_Kid_chat_btn"
+            android:background="@drawable/chat"
+            android:layout_marginTop="169dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/Menu_Kid_Alarem_btn" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/Menu_Kid_Setting_btn"
+            android:background="@drawable/setting"
+            android:layout_alignTop="@+id/Menu_Kid_chat_btn"
+            android:layout_toStartOf="@+id/Menu_Kid_Alarem_btn" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/Menu_Kid_Alarem_btn"
+            android:background="@drawable/alarm"
+            android:layout_below="@+id/Menu_Kid_Setting_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="68dp" />
+    </RelativeLayout>
+</LinearLayout>

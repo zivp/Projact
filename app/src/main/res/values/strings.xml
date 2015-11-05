@@ -19,4 +19,17 @@
     <string name="title_activity_chat__contact__list">Chat_Contact_List</string>
     <string name="title_activity_schedule_">Schedule_Activity</string>
 
+
+
+    //new string
+    //this string is to save user status(p=parent or k=kid)
+    <string name="Parent_OR_kid">PARENT_OR_KID</string>
+    //user name
+    <string name="user_name">USERNAME</string>
+    //user password
+    <string name="user_password">USERPASSWORD</string>
+    //user parse object id
+    <string name="user_parse_id">USERID</string>
+    //parent parse object id
+    <string name="parent_id">PARENTID</string>
 </resources>

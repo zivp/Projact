@@ -8,148 +8,14 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First name"
-            android:id="@+id/FirstNameText"
-            android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/first_nameKidEditText"
-            android:layout_alignEnd="@+id/LastNameKidText" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/first_nameKidEditText"
-            android:background="#ffffffff"
-            android:layout_above="@+id/LastNameKidText"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last name"
-            android:id="@+id/LastNameKidText"
-            android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/last_nameKidEditText"
-            android:layout_alignStart="@+id/AddressKidText" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/last_nameKidEditText"
-            android:background="#ffffffff"
-            android:layout_above="@+id/PhonKidText"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone namber"
-            android:id="@+id/PhonKidText"
-            android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/phoneKidEditText"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/phoneKidEditText"
-            android:inputType="number"
-            android:layout_gravity="center_horizontal"
-            android:background="#ffffffff"
-            android:layout_above="@+id/AgeText"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age"
-            android:id="@+id/AgeText"
-            android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/KidAgeEditText"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/KidAgeEditText"
-            android:inputType="number"
-            android:background="#ffffffff"
-            android:layout_above="@+id/DadId"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User Name"
-            android:id="@+id/AddressKidText"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/KidAgeEditText"
-            android:layout_alignStart="@+id/textView13" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/UserNameKidEditText"
-            android:background="#ffffffff"
-            android:layout_above="@+id/textView13"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:id="@+id/textView13"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="126dp"
-            android:layout_above="@+id/save_Kid_btn"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/kid_user_pass"
-            android:inputType="number"
-            android:background="#ffffffff"
-            android:layout_marginTop="21dp"
-            android:layout_alignTop="@+id/textView13"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm Password"
-            android:id="@+id/textView14"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/kid_user_pass"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/kid_user_Confirm_pass"
-            android:inputType="number"
-            android:background="#ffffffff"
-            android:layout_below="@+id/textView14"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DadId"
-            android:layout_above="@+id/UserNameKidEditText"
-            android:layout_alignParentStart="true" />
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Kid"
             android:id="@+id/save_Kid_btn"
-            android:onClick="onClick"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/PhonKidText" />
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="50dp"
@@ -167,18 +33,180 @@
             android:id="@+id/kid_Image"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/textView14"
-            android:layout_above="@+id/buttonLoadPicture"
-            android:layout_alignStart="@+id/buttonLoadPicture" />
+            android:layout_alignStart="@+id/buttonLoadPicture"
+            android:layout_above="@+id/buttonLoadPicture" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/buttonLoadPicture"
-            android:layout_above="@+id/FirstNameText"
-            android:layout_alignParentEnd="true"
-            android:onClick="loadImagefromGallery" />
+            android:onClick="loadImagefromGallery"
+            android:layout_above="@+id/textView5"
+            android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/Add_Kid_Password"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView11"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_F_Name"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView6"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_Email"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView15"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/Add_Kid_Confirm_Password"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView7"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_Address"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView12"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_User_Name"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView10"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_L_Name"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView9"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_Phone_Number"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/textView8"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First name"
+            android:id="@+id/textView5"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_F_Name"
+            android:layout_alignStart="@+id/textView6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:id="@+id/textView8"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_Email"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last name"
+            android:id="@+id/textView6"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_L_Name"
+            android:layout_alignStart="@+id/textView9" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Addres"
+            android:id="@+id/textView7"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_Address"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:id="@+id/textView10"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_Password"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confraim Password"
+            android:id="@+id/textView11"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_Confirm_Password"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user name"
+            android:id="@+id/textView9"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_User_Name"
+            android:layout_alignStart="@+id/textView10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone namber"
+            android:id="@+id/textView12"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_Phone_Number"
+            android:layout_alignEnd="@+id/save_Kid_btn" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/Add_Kid_Birthday"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:layout_above="@+id/save_Kid_btn"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birthday"
+            android:id="@+id/textView15"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/Add_Kid_Birthday"
+            android:layout_centerHorizontal="true" />
+
+
     </RelativeLayout>
 
 </LinearLayout>
