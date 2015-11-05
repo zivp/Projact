@@ -7,27 +7,35 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.PushService;
 
 import java.util.List;
 
-public class Menu_Main_Activity extends Activity {
+public class myMainScreen extends Activity {
     private static int RESULT_LOAD_IMG = 1;
     protected static String imgDecodableString;
+    protected static Bitmap imageBitmap;
+    EditText username;
+    EditText password;
+    public static final String APPLICATION_ID = "iqR5A9NLhvxuHH4t2Yk7yg4jEfLyA0KDHsT6dsUq";
+    public static final String CLIENT_KEY = "zL75CMfUkUkb4PvHc7ROojcoANmxT6uPwcFQcI06";
     public static String DadId="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +48,14 @@ public class Menu_Main_Activity extends Activity {
 
         Parse.enableLocalDatastore(this);
 
-        Parse.initialize(this,Parse_Keys.APPLICATION_ID,Parse_Keys.CLIENT_KEY);
-        PushService.setDefaultPushCallback(this, SplachScreen.class);
-        //Automat login by user name and password are saved in app preferneces
-        final SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(Menu_Main_Activity.this);
-        final String username=prefernces.getString(getString(R.string.user_name), "");
-        final String userpass=prefernces.getString(getString(R.string.user_password), "");
-        //checking if the values are empty if thai not so checking matches in parse
+        Parse.initialize(this, "iqR5A9NLhvxuHH4t2Yk7yg4jEfLyA0KDHsT6dsUq", "zL75CMfUkUkb4PvHc7ROojcoANmxT6uPwcFQcI06");
+        PushService.setDefaultPushCallback(this, MainActivity.class);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        //Automat login
+        final SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(myMainScreen.this);
+        final String username=prefernces.getString("USER_NAME", "");
+        final String userpass=prefernces.getString("USER_PASS", "");
         if(username.isEmpty()||userpass.isEmpty()){
             FragmentManager fm = getFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
@@ -54,32 +63,21 @@ public class Menu_Main_Activity extends Activity {
             transaction.add(R.id.fragment_placeholder, signupFragment);
             transaction.commit();
         }
-        else{//checking user password and user name in parse
-            signup.InSignUp=false;
-            ParseQuery<ParseObject> dadtable=ParseQuery.getQuery("USER");
-            dadtable.whereEqualTo("User_Name", username);
+        else{
+            ParseQuery<ParseObject> dadtable=ParseQuery.getQuery("Sighup");
+            dadtable.whereEqualTo("UserName", username);
             dadtable.whereEqualTo("Password", userpass);
             dadtable.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> parseObjects, ParseException e) {
                     if(e==null){
                         if(parseObjects.size()>0) {
-                            if(parseObjects.get(0).getString("Parent_OR_kid").matches("p")) {
-                                //to parent screen
-                                Fragment newfragment;
-                                newfragment = new Menu_Parent();
-                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                transaction.replace(R.id.fragment_placeholder, newfragment);
-                                transaction.addToBackStack(null);
-                                transaction.commit();
-                            }else{//to kid screen
-                                Fragment newfragment;
-                                newfragment = new Menu_Kid();
-                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                transaction.replace(R.id.fragment_placeholder, newfragment);
-                                transaction.addToBackStack(null);
-                                transaction.commit();
-                            }
+                            Fragment newfragment;
+                            newfragment = new main_menu();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_placeholder, newfragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
                         }
                     }
                     else{
@@ -87,7 +85,31 @@ public class Menu_Main_Activity extends Activity {
                     }
                 }
             });
+            ParseQuery<ParseObject> kidTable=ParseQuery.getQuery("Kids");
+            kidTable.whereEqualTo("UserName", username);
+            kidTable.whereEqualTo("Password", userpass);
+            kidTable.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> parseObjects, ParseException e) {
+                    if(e==null){
+                        if(parseObjects.size()>0) {
+                            Fragment newfragment;
+                            newfragment = new main_menu();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_placeholder, newfragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplication(), "Connection problem", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
         }
+        //parse parse parse parse parse parse parse parse
+
     }
     public void onClick(View v) {
 
@@ -145,14 +167,10 @@ public class Menu_Main_Activity extends Activity {
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 imgDecodableString = cursor.getString(columnIndex);
                 cursor.close();
+                ImageView imgView = (ImageView) findViewById(R.id.kid_Image);
                 // Set the Image in ImageView after decoding the String
-                if(signup.InSignUp){//in case its to add sign up screen
-                    ImageView imageView = (ImageView) findViewById(R.id.SignUp_User_Image);
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
-                }else{//in case its to add kid screen
-                    ImageView imageView = (ImageView) findViewById(R.id.kid_Image);
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
-                }
+                imgView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
+
             } else {
                 Toast.makeText(this, "You haven't picked Image",
                         Toast.LENGTH_LONG).show();
@@ -161,7 +179,10 @@ public class Menu_Main_Activity extends Activity {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
                     .show();
         }
+
     }
+
+
 }
 
 

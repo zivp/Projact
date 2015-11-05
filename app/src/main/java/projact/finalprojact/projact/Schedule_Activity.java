@@ -1,6 +1,5 @@
 package projact.finalprojact.projact;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
@@ -8,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +28,7 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 
-public class Schedule_Activity extends Activity {
+public class Schedule_Activity extends ActionBarActivity {
     static protected int screennumber=1;
     static protected boolean NewEventOrOld=false;
     static protected boolean schoosekid=false;
@@ -39,7 +39,7 @@ public class Schedule_Activity extends Activity {
     static protected String Current_day="";
     static protected String kidID="";
     static protected String EventID="";
-    static protected String ParentID="";
+
 
 
     @Override
@@ -54,19 +54,25 @@ public class Schedule_Activity extends Activity {
         sv.addView(ll);
         //open user Image
         SharedPreferences prefernces = PreferenceManager.getDefaultSharedPreferences(this);
-        ParentID=prefernces.getString(getString(R.string.user_parse_id),"");
-        ParseQuery<ParseObject> getthiskidid = ParseQuery.getQuery("Parent_Kid");
-        getthiskidid.whereMatches("Parent_ID",ParentID);
-        getthiskidid.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                if(e==null) {
-                    for (int indx = 0; indx < parseObjects.size(); indx++) {
-                        ParseQuery<ParseObject> getcontactuser = ParseQuery.getQuery("USER");
-                        getcontactuser.getInBackground(parseObjects.get(indx).getString("Kid_ID"), new GetCallback<ParseObject>() {
-                            @Override
-                            public void done(final ParseObject parseObject, ParseException e2) {
-                                if (e2 == null) {
+        String UserNames = prefernces.getString("CONTACT_NAMES", "");
+        String UsersId=prefernces.getString("KIDS_ID_PREF", "");
+        if (UserNames.isEmpty()||UsersId.isEmpty()) {
+            Toast.makeText(getApplication(), "add kid first", Toast.LENGTH_SHORT).show();
+        } else
+        {
+            final String[] singleID=UsersId.split(",");
+            //Set Default Kid
+            kidID=singleID[0];
+            final String[] SingleUserNam = UserNames.split(",");
+            for (int indx = 0; indx < singleID.length; indx++) {
+
+                ParseQuery<ParseObject> KidsTable = ParseQuery.getQuery("Kids");
+                KidsTable.getInBackground(singleID[indx], new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(final ParseObject parseObject, ParseException e1) {
+                        if (e1 == null) {
+                            for(int indx2=0;indx2<SingleUserNam.length;indx2++) {
+                                if (parseObject.getString("UserName").matches(SingleUserNam[indx2])) {
                                     ParseFile fileObject = (ParseFile) parseObject.get("Image");
                                     fileObject.getDataInBackground(new GetDataCallback() {
                                         public void done(byte[] data, ParseException e2) {
@@ -79,12 +85,12 @@ public class Schedule_Activity extends Activity {
                                                 int height = sv.getHeight();// ((display.getHeight()*30)/100)
                                                 LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
                                                 kidImage.setLayoutParams(parms);
+
                                                 kidImage.setOnTouchListener(new View.OnTouchListener() {
                                                     @Override
                                                     public boolean onTouch(View v, MotionEvent event) {
                                                         if (!NewEventOrOld) {
-                                                            Schedule_List_AllEvent.kidname_STR=parseObject.getString("F_name");
-                                                            ((TextView) findViewById(R.id.kidNameListEvent)).setText(parseObject.getString("F_name"));
+                                                            ((TextView) findViewById(R.id.kidNameListEvent)).setText(parseObject.getString("Name"));
                                                             kidID = parseObject.getObjectId();
                                                             schoosekid = true;
                                                             Schedule_List_AllEvent.CleenEventList();
@@ -99,8 +105,17 @@ public class Schedule_Activity extends Activity {
                                     });
                                 }
                             }
-                        });
+                        }
                     }
+                });
+            }
+        }
+        ParseQuery<ParseObject> DadTable = ParseQuery.getQuery("Kids");
+        DadTable.getInBackground(kidID, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e2) {
+                if (e2 == null) {
+                    ((TextView) findViewById(R.id.kidNameListEvent)).setText(parseObject.getString("Name"));
                 }
             }
         });

@@ -23,24 +23,20 @@ import java.util.Locale;
 
 public class Schedule_List_AllEvent extends Fragment {
 
-    static  protected String kidname_STR;
-    TextView kidname;
-
     static protected LinearLayout ll;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View show_events= inflater.inflate(R.layout.schedule_list_all_event, container, false);
-        kidname=(TextView)show_events.findViewById(R.id.kidNameListEvent);
-        kidname.setText(kidname_STR);
+        final View showing_events= inflater.inflate(R.layout.schedule_list_all_event, container, false);
+
         String weekDay;
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
         Calendar calendar = Calendar.getInstance();
         weekDay = dayFormat.format(calendar.getTime());
         Schedule_Activity.Current_day=weekDay;
-        ((TextView) show_events.findViewById(R.id.ListEvent_Today)).setText(weekDay);
+        ((TextView) showing_events.findViewById(R.id.ListEvent_Today)).setText(weekDay);
 
-        ScrollView sv=(ScrollView)show_events.findViewById(R.id.scrolevent);
+        ScrollView sv=(ScrollView)showing_events.findViewById(R.id.scrolevent);
         ll = new LinearLayout(getActivity());
         ll.setOrientation(LinearLayout.VERTICAL);
         sv.addView(ll);
@@ -85,7 +81,8 @@ public class Schedule_List_AllEvent extends Fragment {
                     }
                 }
             });
-        return show_events;
+
+        return showing_events;
     }
     static protected void CleenEventList(){
         ll.removeAllViews();

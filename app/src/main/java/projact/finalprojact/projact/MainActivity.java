@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-public class SplachScreen extends Activity {
+public class MainActivity extends Activity {
 
     //this value is for know if the user is dad or kid ...if its kid the value-
     ProgressBar progressBar;
@@ -50,7 +50,7 @@ public class SplachScreen extends Activity {
 
 
 
-                    Intent i = new Intent(SplachScreen.this, Menu_Main_Activity.class);
+                    Intent i = new Intent(MainActivity.this, myMainScreen.class);
                     startActivity(i);
                 }
             }
