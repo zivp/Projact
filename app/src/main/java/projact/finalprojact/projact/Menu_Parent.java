@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class main_menu  extends Fragment {
+public class Menu_Parent extends Fragment {
     //btns......
     private Button AddKid;
     private Button chat_btn;
@@ -24,7 +24,7 @@ public class main_menu  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View Main= inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View Main= inflater.inflate(R.layout.menu_parent, container, false);
 
 
         Main.findViewById(R.id.btnTOaddkid).setOnClickListener(new View.OnClickListener() {
