@@ -107,10 +107,10 @@ public class Menu_Main_Activity extends Activity {
     }
 
     //*function are lanche you to location screen from menu*//
-    public void tolocation(View view)
+    public void toLocation(View view)
     {
-        Intent intent=new Intent(this,MapsActivity.class);
-        startActivity(intent);
+            Intent i = new Intent(this, MapsActivity.class);
+            startActivity(i);
     }
     public void toSchedule(View view){
         Intent intent=new Intent(this,Schedule_Activity.class);

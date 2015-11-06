@@ -44,6 +44,8 @@ public class Menu_Parent extends Fragment {
                 startActivity(intent);
             }
         });
+
+
         //function and button to testing and qa ...........
         Main.findViewById(R.id.details_btn).setOnClickListener(new View.OnClickListener() {
             @Override
