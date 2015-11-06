@@ -3,23 +3,50 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/save_signup_btn"
-            android:onClick="onClick"
+            android:text="Save Kid"
+            android:id="@+id/save_Kid_btn"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/BackAddkidToMenu"
+            android:onClick="onClick"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:drawable/ic_menu_revert" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/kid_Image"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/buttonLoadPicture"
+            android:layout_above="@+id/buttonLoadPicture" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/buttonLoadPicture"
+            android:onClick="loadImagefromGallery"
+            android:layout_above="@+id/textView5"
+            android:layout_alignParentEnd="true" />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/Add_Kid_Password"
@@ -30,7 +57,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_F_Name"
             android:background="@android:drawable/bottom_bar"
             android:layout_above="@+id/textView6"
@@ -38,7 +65,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_Email"
             android:layout_gravity="center_horizontal"
             android:background="@android:drawable/bottom_bar"
@@ -47,7 +74,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/Add_Kid_Confirm_Password"
@@ -57,7 +84,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_Address"
             android:layout_gravity="center_horizontal"
             android:background="@android:drawable/bottom_bar"
@@ -66,7 +93,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_User_Name"
             android:background="@android:drawable/bottom_bar"
             android:layout_above="@+id/textView10"
@@ -74,7 +101,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_L_Name"
             android:background="@android:drawable/bottom_bar"
             android:layout_above="@+id/textView9"
@@ -82,7 +109,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_Phone_Number"
             android:layout_gravity="center_horizontal"
             android:background="@android:drawable/bottom_bar"
@@ -159,16 +186,16 @@
             android:id="@+id/textView12"
             android:layout_gravity="center_horizontal"
             android:layout_above="@+id/Add_Kid_Phone_Number"
-            android:layout_alignEnd="@+id/save_signup_btn" />
+            android:layout_alignEnd="@+id/save_Kid_btn" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="25dp"
             android:id="@+id/Add_Kid_Birthday"
             android:layout_gravity="center_horizontal"
             android:background="@android:drawable/bottom_bar"
-            android:layout_above="@+id/save_signup_btn"
-            android:layout_alignParentEnd="true" />
+            android:layout_above="@+id/save_Kid_btn"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -179,22 +206,7 @@
             android:layout_above="@+id/Add_Kid_Birthday"
             android:layout_centerHorizontal="true" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/SignUp_User_Image"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/textView11"
-            android:layout_above="@+id/button" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose Image"
-            android:id="@+id/button"
-            android:onClick="loadImagefromGallery"
-            android:layout_above="@+id/textView5"
-            android:layout_alignEnd="@+id/SignUp_User_Image" />
     </RelativeLayout>
+
 </LinearLayout>
